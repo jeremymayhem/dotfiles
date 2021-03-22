@@ -18,8 +18,8 @@ set ignorecase
 set copyindent
 set noerrorbells
 set undolevels=200
-set directory=$VIMCONFIG/swap
-set backupdir=$VIMCONFIG/backup
+set directory=~/.cache/vim
+set backupdir=~/.cache/vim
 set ai!     " Turn on auto indent
 set splitbelow
 set spitright
@@ -28,7 +28,11 @@ set hlsearch
 set nobackup
 set noswapfile
 set nowb
+set autoread
 set laststatus=2
+set wildignore+=.pyc,.swp
+set history=1000
+set mouse=a
 
 " Window motion improvements
 map <C-j> <C-W>j
