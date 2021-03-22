@@ -1,0 +1,78 @@
+[core]
+   editor = vim
+   pager = less -LFXR
+
+[alias]
+  co = checkout
+  stat = status
+  sta = status
+  st = status
+  s = status
+  ci = commit -v
+  exec = "!exec "
+  aa = add --all
+
+[init]
+  templatedir = ~/.git_template
+
+[push]
+  default = current
+
+[pull]
+  rebase = true
+
+[fetch]
+  prune = true
+
+[rebase]
+  autosquash = true
+
+[branch]
+  autosetupmerge = true
+
+[color]
+  status = always
+  ui = auto
+  branch = auto
+  diff = auto
+  interactive = true
+  showbranch = true
+
+[color "status"]
+  added = green
+  changed = yellow
+  untracked = cyan
+
+[color "branch"]
+  remote = green
+  local = yellow
+
+[diff]
+  renames = copies
+  tool = meld
+
+[difftool]
+  prompt = false
+
+[merge]
+  stat = true
+  conflictstyle = diff3
+  tool = vimdiff
+  summary = true
+
+[mergetool]
+  prompt = false
+
+[tig]
+  line-graphics = utf-8
+  mouse = true
+  tab-size = 2
+  main-view-author-display = abbreviated
+  main-view-date-display = relative
+  refs-view-date-display = relative
+  stash-view-date-display = relative
+  blame-view-date-display = relative
+
+[include]
+  path = .gitconfig.local
+    
