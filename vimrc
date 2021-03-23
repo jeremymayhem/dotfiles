@@ -22,7 +22,7 @@ set directory=~/.cache/vim
 set backupdir=~/.cache/vim
 set ai!     " Turn on auto indent
 set splitbelow
-set spitright
+set splitright
 set incsearch
 set hlsearch
 set nobackup
@@ -74,7 +74,7 @@ endif
 " Section: Color scheme configuration
 
 if empty($VIM_COLORSCHEME)
-  let $VIM_COLORSCHEME = "gruvbox"
+  let $VIM_COLORSCHEME = "jellybeans"
 endif
 
 if !empty($VIM_AIRLINE_THEME)
@@ -90,9 +90,11 @@ if ($VIM_COLORSCHEME == 'gruvbox')
   hi Normal ctermbg=none
   hi NonText ctermbg=none
   colorscheme gruvbox
-elseif $(VIM_COLORSCHEME == 'one')
+elseif ($VIM_COLORSCHEME == 'one')
   set background=dark
   colorscheme one
+else
+  colorscheme $VIM_COLORSCHEME
 endif
 
 set display=lastline

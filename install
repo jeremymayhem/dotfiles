@@ -4,3 +4,4 @@ ln -s ~/.dotfiles/gitconfig ~/.gitconfig
 ln -s ~/.dotfiles/vimrc ~/.vimrc
 mkdir -p ~/bin
 ln -s ~/.dotfiles/bin/git-ctags ~/bin/git-ctags
+ln -s ~/.dotfiles/tmux.conf ~/.tmux.conf
