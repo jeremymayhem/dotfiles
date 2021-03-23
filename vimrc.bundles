@@ -1,6 +1,8 @@
 
 " standard plugins.  Add additional plugins in .vimrc.bundles.local 
 
+let g:has_async = v:version >= 800 || has('nvim')
+
 call plug#begin('~/.vim/bundle')
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'
@@ -19,6 +21,12 @@ Plug 'mhinz/vim-startify'
 Plug 'davidoc/taskpaper.vim', { 'for': ['taskpaper','tp']}
 Plug 'morhetz/gruvbox'
 Plug 'rakr/vim-one'
+Plug 'xolox/vim-misc'
+
+" Ale requires async support
+if g:has_async
+  Plug 'w0rp/ale'
+endif
 
 
 " Plug 'tpope/vim-endwise'
@@ -35,7 +43,6 @@ Plug 'rakr/vim-one'
 " Plug 'junegunn/fzf.vim'
 " Plug 'fidian/hexmode'
 " Plug 'pbrisbin/vim-mkdir'
-" Plug 'xolox/vim-misc'
 " Plug 'pgilad/vim-skeletons'
 " Plug 'moll/vim-bbye'
 " Plug 'Raimondi/delimitMate'
@@ -71,10 +78,6 @@ Plug 'vim-scripts/indentpython.vim'
 if executable('ctags')
   Plug 'xolox/vim-easytags'
   Plug 'majutsushi/tagbar'
-endif
-
-if g:has_async
-  Plug 'w0rp/ale'
 endif
 
 if has("python") || has("python3")
