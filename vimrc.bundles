@@ -1,0 +1,92 @@
+
+" standard plugins.  Add additional plugins in .vimrc.bundles.local 
+
+call plug#begin('~/.vim/bundle')
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-unimpaired'
+Plug 'myusuf3/numbers.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'idanarye/vim-merginal'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'mbbill/undotree'
+Plug 'junegunn/gv.vim'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'mhinz/vim-startify'
+Plug 'davidoc/taskpaper.vim', { 'for': ['taskpaper','tp']}
+Plug 'morhetz/gruvbox'
+Plug 'rakr/vim-one'
+
+
+" Plug 'tpope/vim-endwise'
+" Plug 'tpope/vim-eunuch'
+" Plug 'tpope/vim-repeat'
+" Plug 'tpope/vim-surround'
+" Plug 'tpope/vim-dispatch'
+" Plug 'tpope/vim-tbone'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'jacoborus/tender.vim'
+" Plug 'mileszs/ack.vim'
+" Plug 'jlanzarotta/bufexplorer'
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plug 'junegunn/fzf.vim'
+" Plug 'fidian/hexmode'
+" Plug 'pbrisbin/vim-mkdir'
+" Plug 'xolox/vim-misc'
+" Plug 'pgilad/vim-skeletons'
+" Plug 'moll/vim-bbye'
+" Plug 'Raimondi/delimitMate'
+" Plug 'easymotion/vim-easymotion'
+" Plug 'farmergreg/vim-lastplace'
+" Plug 'junegunn/vim-emoji'
+" Plug 'mattn/webapi-vim'
+" Plug 'mattn/gist-vim'
+" Plug 'editorconfig/editorconfig-vim'
+" Plug 'vim-scripts/a.vim'
+" Plug 'tpope/vim-bundler'
+" Plug 'dbakker/vim-projectroot'
+" Plug 'kana/vim-arpeggio'
+" Plug 'pdelfuego/vim-swoop'
+" Plug 'rchicoli/vim-zoomwin'
+" Plug 'nathanaelkane/vim-indent-guides'
+" Plug 'hecal3/vim-leader-guide'
+
+" There be dragons here
+" Plug 'Valloric/YouCompleteMe'
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'nanotech/jellybeans.vim'
+" Plug 'ryanoasis/vim-devicons'
+Plug 'edkolev/tmuxline.vim'
+
+" Syntactic prettiness
+Plug 'sheerun/vim-polyglot'
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'vim-scripts/indentpython.vim'
+
+if executable('ctags')
+  Plug 'xolox/vim-easytags'
+  Plug 'majutsushi/tagbar'
+endif
+
+if g:has_async
+  Plug 'w0rp/ale'
+endif
+
+if has("python") || has("python3")
+  if executable('clang')
+    Plug 'Rip-Rip/clang_complete'
+  endif
+endif
+
+" Plug 'SirVer/ultisnips'
+
+if filereadable(expand('~/.vimrc.bundles.local'))
+  source ~/.vimrc.bundles.local
+endif
+
+call plug#end()
