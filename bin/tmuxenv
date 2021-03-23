@@ -1,0 +1,19 @@
+#!/bin/bash
+if [ -z $TMUX ]; then
+    echo "tmux is not running"
+    exit;
+fi
+
+IFS=$'\n' # set the internal field separator to just a newline
+for e in `tmux show-environment | grep -v ^-`
+do
+    name=`echo $e | cut -d '=' -f1`
+    value=`echo $e | cut -d '=' -f2`
+    eval "$name=\"${value}\" && export $name"
+done
+
+## .tmux.conf
+## Add this line to your ~/.tmux.conf file to bind the 'e' key to run the tmuxenv script
+## Just make sure the tmuxenv script is in your $PATH!!
+##
+## bind e send-keys '. tmuxenv' C-m
