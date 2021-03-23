@@ -3,16 +3,24 @@
       create: true
       relink: true
 
+- create:
+  - ~/bin
+
 - clean: ['~', '~/.config']
 
 - link:
+    ~/.dircolors:
     ~/.dotfiles: ''
     ~/.gitconfig:
+    ~/.tigrc:
     ~/.tmux.conf:
+    ~/.vimrc.bundles:
     ~/.vimrc:
-
-- create:
-  - ~/bin
+    ~/bin/:
+      path: bin/*
+      glob: true
+    ~/bin/icdiff: external/icdiff/icdiff
+    ~/bin/git-icdiff: external/icdiff/git-icdiff
 
 - shell:
   - git submodule sync --recursive

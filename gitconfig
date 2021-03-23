@@ -11,6 +11,8 @@
   ci = commit -v
   exec = "!exec "
   aa = add --all
+  update-submodules = submodule update --init --recursive
+  upgrade-submodules = submodule update --init --remote
 
 [init]
   templatedir = ~/.git_template
