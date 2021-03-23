@@ -61,6 +61,9 @@ filetype plugin on
 let powerline_font_available = $POWERLINE_FONT
 let nerd_font_available = $NERD_FONT
 
+let vimDir = '$HOME/.vim'
+let &runtimepath.=','.vimDir
+
 if filereadable(expand("~/.vimrc.bundles"))
   source ~/.vimrc.bundles
 endif
@@ -98,6 +101,28 @@ else
 endif
 
 set display=lastline
+
+" Keep undo history across sessionis by storing it in a filereadable
+if has('persistent_undo')
+  let myUndoDir = expand(vimDir.'/undodir')
+  call system('mkdir ' . vimDir)
+  call system('mkdir ' . myUndoDir)
+  let &undodir = myUndoDir
+  set undofile
+endif
+
+" Section: Plugin configuration
+
+" vim-startify configuration
+let g:startify_files_number = 15
+let g:startify_session_autoload = 1
+let g:startify_relative_path = 1
+let g:startify_session_before_save = [
+  \ 'echo "Saving..."',
+  \ ]
+let g:startify_custom_footer = ['', "   Vim awesomeness brought to you by STARLORD", '']
+let g:startify_fortune_use_unicode=1
+let g:startify_padding_left=3
 
 if filereadable(expand('~/.vimrc.local'))
   source ~/.vimrc.local

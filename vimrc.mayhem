@@ -1,0 +1,6 @@
+" Some of the more controversial choices...
+
+" Use jj in insert mode as alternate excape key
+inoremap jj <Esc>
+
+" vim:set ft=vim et sw=2:
