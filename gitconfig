@@ -15,7 +15,7 @@
   upgrade-submodules = submodule update --init --remote
 
 [init]
-  templatedir = ~/.git_template
+#  templatedir = ~/.git_template
 
 [push]
   default = current
