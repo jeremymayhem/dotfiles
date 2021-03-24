@@ -24,7 +24,7 @@
     ~/bin/git-icdiff: external/icdiff/git-icdiff
 
 - shell:
-  - curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   - git submodule sync --recursive
   # the following have to run after linking ~/.gitconfig
   - git update-submodules
+  - curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
