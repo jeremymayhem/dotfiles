@@ -15,6 +15,7 @@
     ~/.gitconfig:
     ~/.tigrc:
     ~/.tmux.conf:
+    ~/.tmux.theme.conf:
     ~/.vimrc.bundles:
     ~/.vimrc:
     ~/bin/:

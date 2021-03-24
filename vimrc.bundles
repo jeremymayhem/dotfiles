@@ -67,8 +67,8 @@ endif
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'nanotech/jellybeans.vim'
-" Plug 'ryanoasis/vim-devicons'
-Plug 'edkolev/tmuxline.vim'
+Plug 'ryanoasis/vim-devicons'
+" Plug 'edkolev/tmuxline.vim'
 
 " Syntactic prettiness
 Plug 'sheerun/vim-polyglot'
