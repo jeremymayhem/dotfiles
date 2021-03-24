@@ -77,13 +77,13 @@ endif
 " Section: Color scheme configuration
 
 if empty($VIM_COLORSCHEME)
-  let $VIM_COLORSCHEME = "jellybeans"
+  let $VIM_COLORSCHEME = "gruvbox"
 endif
 
 if !empty($VIM_AIRLINE_THEME)
   let g:airline_theme=$VIM_AIRLINE_THEME
-else
-  let g:airline_theme='one'
+e
+  let g:airline_theme='gruvbox'
 endif
 
 if ($VIM_COLORSCHEME == 'gruvbox')
@@ -112,6 +112,9 @@ if has('persistent_undo')
 endif
 
 " Section: Plugin configuration
+
+" powerline configuration
+let g:airline_powerline_fonts = 1
 
 " vim-startify configuration
 let g:startify_files_number = 15
