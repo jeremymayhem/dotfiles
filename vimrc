@@ -33,6 +33,7 @@ set laststatus=2
 set wildignore+=.pyc,.swp
 set history=1000
 set mouse=a
+set updatetime=100
 
 " Window motion improvements
 map <C-j> <C-W>j
@@ -102,7 +103,7 @@ endif
 
 set display=lastline
 
-" Keep undo history across sessionis by storing it in a filereadable
+" Keep undo history across sessions by storing it in a file
 if has('persistent_undo')
   let myUndoDir = expand(vimDir.'/undodir')
   call system('mkdir ' . vimDir)
@@ -111,10 +112,23 @@ if has('persistent_undo')
   set undofile
 endif
 
+" Section: Key mappings
+
+nnoremap <F2> :TagbarToggle<CR>
+nnoremap <F3> :NERDTreeToggleVCS<CR>
+nnoremap <F4> :NumbersOnOff<CR>
+nnoremap <S-F4> :NumbersToggle<CR>
+nnoremap <F7> :MundoToggle<CR>
+
 " Section: Plugin configuration
 
 " powerline configuration
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#ale#enabled = 1
+
+" ALE configuration
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
 
 " vim-startify configuration
 let g:startify_files_number = 15

@@ -1,41 +1,73 @@
 
-" standard plugins.  Add additional plugins in .vimrc.bundles.local 
+" standard plugins.  Add additional plugins in .vimrc.bundles.local
 
 let g:has_async = v:version >= 800 || has('nvim')
 
 call plug#begin('~/.vim/bundle')
-Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-unimpaired'
-Plug 'myusuf3/numbers.vim'
-Plug 'airblade/vim-gitgutter'
-Plug 'idanarye/vim-merginal'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'mbbill/undotree'
-Plug 'junegunn/gv.vim'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'tpope/vim-sensible'       " Basic vim defaults
+
+" Section: IDE
 Plug 'mhinz/vim-startify'
-Plug 'davidoc/taskpaper.vim', { 'for': ['taskpaper','tp']}
-Plug 'morhetz/gruvbox'
-Plug 'rakr/vim-one'
+Plug 'simnalamburt/vim-mundo'   " Undo tree
+Plug 'preservim/nerdtree'       " File tree browser
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'ctrlpvim/ctrlp.vim'       " Fuzzy file finder
+Plug 'tpope/vim-commentary'     " Commenting functions
+Plug 'tpope/vim-unimpaired'     " Motion pairs
+Plug 'tpope/vim-endwise'        " Automatic block closures
+Plug 'tpope/vim-repeat'         " Repeats for plugins
+Plug 'tpope/vim-eunuch'         " File management commands
+Plug 'tpope/vim-surround'
+Plug 'myusuf3/numbers.vim'      " Line numbers
+Plug 'farmergreg/vim-lastplace' " Start where you left off
+
+" Section: Git
+Plug 'tpope/vim-fugitive'       " Git functions
+Plug 'airblade/vim-gitgutter'   " Git change symbols in the gutter
+Plug 'junegunn/gv.vim'          " tig-like git viewer
+
+Plug 'idanarye/vim-merginal'
+Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'xolox/vim-misc'
+
+Plug 'davidoc/taskpaper.vim', { 'for': ['taskpaper','tp']}
 
 " Ale requires async support
 if g:has_async
-  Plug 'w0rp/ale'
+  Plug 'dense-analysis/ale'
 endif
 
+" Section: Themes
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'ryanoasis/vim-devicons'
+Plug 'nanotech/jellybeans.vim'  " colorscheme
+Plug 'morhetz/gruvbox'          " colorscheme
+Plug 'rakr/vim-one'             " colorscheme
 
-" Plug 'tpope/vim-endwise'
-" Plug 'tpope/vim-eunuch'
-" Plug 'tpope/vim-repeat'
-" Plug 'tpope/vim-surround'
+" Section: Syntactic prettiness
+Plug 'sheerun/vim-polyglot'
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'vim-scripts/indentpython.vim'
+
+if executable('ctags')
+  Plug 'xolox/vim-easytags'
+  Plug 'preservim/tagbar'
+endif
+
+if has("python") || has("python3")
+  if executable('clang')
+    Plug 'Rip-Rip/clang_complete'
+  endif
+endif
+
+" Section: Experimental stuff
+
+" Plug 'SirVer/ultisnips'
+" Plug 'edkolev/tmuxline.vim'
 " Plug 'tpope/vim-dispatch'
 " Plug 'tpope/vim-tbone'
-" Plug 'Xuyuanp/nerdtree-git-plugin'
 " Plug 'jacoborus/tender.vim'
 " Plug 'mileszs/ack.vim'
 " Plug 'jlanzarotta/bufexplorer'
@@ -47,7 +79,6 @@ endif
 " Plug 'moll/vim-bbye'
 " Plug 'Raimondi/delimitMate'
 " Plug 'easymotion/vim-easymotion'
-" Plug 'farmergreg/vim-lastplace'
 " Plug 'junegunn/vim-emoji'
 " Plug 'mattn/webapi-vim'
 " Plug 'mattn/gist-vim'
@@ -63,30 +94,6 @@ endif
 
 " There be dragons here
 " Plug 'Valloric/YouCompleteMe'
-
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'nanotech/jellybeans.vim'
-Plug 'ryanoasis/vim-devicons'
-" Plug 'edkolev/tmuxline.vim'
-
-" Syntactic prettiness
-Plug 'sheerun/vim-polyglot'
-Plug 'bronson/vim-trailing-whitespace'
-Plug 'vim-scripts/indentpython.vim'
-
-if executable('ctags')
-  Plug 'xolox/vim-easytags'
-  Plug 'majutsushi/tagbar'
-endif
-
-if has("python") || has("python3")
-  if executable('clang')
-    Plug 'Rip-Rip/clang_complete'
-  endif
-endif
-
-" Plug 'SirVer/ultisnips'
 
 if filereadable(expand('~/.vimrc.bundles.local'))
   source ~/.vimrc.bundles.local
