@@ -6,6 +6,7 @@
 - create:
   - ~/bin
   - ~/.vim
+  - ~/.bashrc.better.d
 
 - clean: ['~', '~/.config']
 
@@ -18,6 +19,7 @@
     ~/.tmux.theme.conf:
     ~/.vimrc.bundles:
     ~/.vimrc:
+    ~/.bashrc.better:
     ~/bin/:
       path: bin/*
       glob: true

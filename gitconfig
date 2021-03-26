@@ -17,6 +17,9 @@
 [init]
 #  templatedir = ~/.git_template
 
+[icdiff]
+  options = --line-numbers
+
 [push]
   default = current
 

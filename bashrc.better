@@ -1,0 +1,14 @@
+#!/bin/env bash
+
+# Only display stdout from better bash scripts when not a login shell
+for f in $HOME/.bashrc.better.d; do
+  if [ -r "$f" ]; then
+    if [ "$PS1" ]; then
+      . "$f"
+    else
+      . "$f" >/dev/null
+    fi
+  fi
+done
+
+[[ -f $HOME/.bashrc.local ]] && . $HOME/.bashrc.local
