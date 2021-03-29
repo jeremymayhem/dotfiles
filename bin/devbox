@@ -41,7 +41,7 @@ task_update_dotfiles() {
 task_refresh_submodules() {
   cd $DEVBOX_DIR
   git fetch
-  git submodule-upgrade
+  git upgrade-submodules
   git add .
   git commit -m "Updating to latest submodules"
   git push
