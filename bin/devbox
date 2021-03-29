@@ -13,7 +13,7 @@ task_update() {
 }
 
 task_refresh() {
-  bask_depends update_ansible_galaxy playbook dotfiles
+  bask_depends update_ansible_galaxy playbook update_dotfiles
 }
 
 task_latest() {
