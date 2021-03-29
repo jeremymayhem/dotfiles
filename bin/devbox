@@ -4,7 +4,7 @@
 cd "$(dirname "$0")" || exit
 source $HOME/.bask/src/bask.sh
 
-DEVBOX_DIR=$DEVBOX_DIR
+DEVBOX_DIR=$HOME/.devbox
 ANSIBLE_DIR=$DEVBOX_DIR/ansible
 DOTFILES_DIR=$DEVBOX_DIR/dotfiles
 
