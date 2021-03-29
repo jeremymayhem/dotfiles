@@ -4,3 +4,9 @@
 [submodule "external/icdiff"]
 	path = external/icdiff
 	url = https://github.com/jeffkaufman/icdiff.git
+[submodule "tpm"]
+	path = external/tpm
+	url = https://github.com/tmux-plugins/tpm
+[submodule "external/PathPicker"]
+	path = external/PathPicker
+	url = https://github.com/facebook/PathPicker.git

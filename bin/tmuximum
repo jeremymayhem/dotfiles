@@ -1,0 +1,23 @@
+#!/bin/env bash
+
+_tmux_version=$(tmux -V | awk '{gsub(/[^0-9.]/, "", $2); print ($2+0) * 100}')
+
+version() {
+  echo $_tmux_version
+}
+
+toggle_mouse() {
+  local old=$(tmux show -gv mouse)
+  local new=""
+
+  if [ "$old" = "on" ]; then
+    new="off"
+  else
+    new="on"
+  fi
+
+  tmux set -g mouse $new
+  tmux display " Mouse $new"
+}
+
+"$@"

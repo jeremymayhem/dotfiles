@@ -6,6 +6,8 @@
 - create:
   - ~/bin
   - ~/.vim
+  - ~/.tmux
+  - ~/.tmux/plugins
   - ~/.bashrc.better.d
 
 - clean: ['~', '~/.config']
@@ -17,6 +19,7 @@
     ~/.tigrc:
     ~/.tmux.conf:
     ~/.tmux.theme.conf:
+    ~/.tmux/plugins/tpm: external/tpm
     ~/.vimrc.bundles:
     ~/.vimrc:
     ~/.bashrc.better:
@@ -25,6 +28,7 @@
       glob: true
     ~/bin/icdiff: external/icdiff/icdiff
     ~/bin/git-icdiff: external/icdiff/git-icdiff
+    ~/bin/fpp: external/PathPicker/fpp
     ~/.bashrc.better.d/:
       path: bashrc.better.d/*
       glob: true
