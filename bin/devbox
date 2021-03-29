@@ -8,37 +8,61 @@ DEVBOX_DIR=$HOME/.devbox
 ANSIBLE_DIR=$DEVBOX_DIR/ansible
 DOTFILES_DIR=$DEVBOX_DIR/dotfiles
 
+task_help() {
+  printf "\n%27sdevbox [COMMAND]...\n\n" ""
+  printf "%27sWhere command is:\n\n"
+  local -a tasks=($(_bask_get_defined_tasks))
+  for task in "${tasks[@]}"; do
+    [[ $task == "help" ]] && continue;
+    local helptext=$("task_$task" -h)
+    printf "%24s - %s\n" $task "$helptext"
+  done
+  echo
+}
+
+# Override default behavior
+bask_list_tasks() {
+  task_help
+}
+
 task_update() {
+  [[ $1 == "-h" ]] && printf "Update devbox configuration with the very latest ansible/dotfiles" && return
   bask_depends latest refresh
 }
 
 task_refresh() {
+  [[ $1 == "-h" ]] && printf "Refresh devbox configuration with local ansible/dotfiles" && return
   bask_depends update_ansible_galaxy playbook update_dotfiles
 }
 
 task_latest() {
+  [[ $1 == "-h" ]] && printf "Pull the latest ansible/dotfiles, but don't run install" && return
   cd $DEVBOX_DIR
   git pull
   git submodule update --init --recursive .
 }
 
 task_update_ansible_galaxy() {
+  [[ $1 == "-h" ]] && printf "Update required Ansible Galaxy repositories" && return
   cd $ANSIBLE_DIR
   ansible-galaxy install -r requirements.yml
   ansible-galaxy collection install -r requirements.yml
 }
 
 task_playbook() {
+  [[ $1 == "-h" ]] && printf "Run local Ansible playbook.  Use --tags=x,y to only run tags" && return
   cd $ANSIBLE_DIR
   ansible-playbook -K devbox.yml -i inventory ${@}
 }
 
 task_update_dotfiles() {
+  [[ $1 == "-h" ]] && printf "Update local dotfiles" && return
   cd $DOTFILES_DIR
   ./install
 }
 
 task_refresh_submodules() {
+  [[ $1 == "-h" ]] && printf "Commit a new devbox project with the very latest ansible/dotfiles" && return
   cd $DEVBOX_DIR
   git fetch
   git upgrade-submodules
