@@ -1,0 +1,44 @@
+#!/bin/env bash
+
+# Implemented using bask framework
+cd "$(dirname "$0")" || exit
+source $HOME/.bask/src/bask.sh
+
+task_update() {
+  bask_depends latest refresh
+}
+
+task_refresh() {
+  bask_depends update_ansible_galaxy playbook dotfiles
+}
+
+task_latest() {
+  cd $HOME/.devbox
+  git pull
+  git submodule update --init --recursive .
+}
+
+task_update_ansible_galaxy() {
+  cd $HOME/.devbox/ansible
+  ansible-galaxy install -r requirements.yml
+  ansible-galaxy collection install -r requirements.yml
+}
+
+task_playbook() {
+  cd $HOME/.devbox/ansible
+  ansible-playbook -K devbox.yml -i inventory ${@}
+}
+
+task_update_dotfiles() {
+  cd $HOME/.devbox/dotfiles
+  ./install
+}
+
+task_refresh_submodules() {
+  cd $HOME/.devbox
+  git fetch
+  git submodule-upgrade
+  git add .
+  git commit -m "Updating to latest submodules"
+  git push
+}

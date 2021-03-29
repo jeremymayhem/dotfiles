@@ -22,6 +22,7 @@
     ~/.tmux/plugins/tpm: external/tpm
     ~/.vimrc.bundles:
     ~/.vimrc:
+    ~/.bask: external/bask
     ~/.bashrc.better:
     ~/bin/:
       path: bin/*

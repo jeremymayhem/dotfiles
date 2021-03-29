@@ -10,3 +10,6 @@
 [submodule "external/PathPicker"]
 	path = external/PathPicker
 	url = https://github.com/facebook/PathPicker.git
+[submodule "external/bask"]
+	path = external/bask
+	url = https://github.com/jez/bask.git
