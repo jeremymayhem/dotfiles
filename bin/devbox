@@ -4,6 +4,14 @@
 cd "$(dirname "$0")" || exit
 source $HOME/.bask/src/bask.sh
 
+DEVBOX_DIR=$DEVBOX_DIR
+ANSIBLE_DIR=$DEVBOX_DIR/ansible
+DOTFILES_DIR=$DEVBOX_DIR/dotfiles
+
+task_default() {
+  echo "Hai"
+}
+
 task_update() {
   bask_depends latest refresh
 }
@@ -13,29 +21,29 @@ task_refresh() {
 }
 
 task_latest() {
-  cd $HOME/.devbox
+  cd $DEVBOX_DIR
   git pull
   git submodule update --init --recursive .
 }
 
 task_update_ansible_galaxy() {
-  cd $HOME/.devbox/ansible
+  cd $ANSIBLE_DIR
   ansible-galaxy install -r requirements.yml
   ansible-galaxy collection install -r requirements.yml
 }
 
 task_playbook() {
-  cd $HOME/.devbox/ansible
+  cd $ANSIBLE_DIR
   ansible-playbook -K devbox.yml -i inventory ${@}
 }
 
 task_update_dotfiles() {
-  cd $HOME/.devbox/dotfiles
+  cd $DOTFILES_DIR
   ./install
 }
 
 task_refresh_submodules() {
-  cd $HOME/.devbox
+  cd $DEVBOX_DIR
   git fetch
   git submodule-upgrade
   git add .
