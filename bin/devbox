@@ -8,10 +8,6 @@ DEVBOX_DIR=$DEVBOX_DIR
 ANSIBLE_DIR=$DEVBOX_DIR/ansible
 DOTFILES_DIR=$DEVBOX_DIR/dotfiles
 
-task_default() {
-  echo "Hai"
-}
-
 task_update() {
   bask_depends latest refresh
 }
