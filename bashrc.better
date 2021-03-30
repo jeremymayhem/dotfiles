@@ -1,4 +1,5 @@
 #!/bin/env bash
+[[ -f $HOME/.bashrc.config ]] && . $HOME/.bashrc.config
 
 # Only display stdout from better bash scripts when not a login shell
 for f in $HOME/.bashrc.better.d/*; do
