@@ -37,6 +37,7 @@
     ~/.bashrc.better.d/:
       path: bashrc.better.d/*
       glob: true
+    ~/.git-prompt-colors.sh:
     ~/.fzf: external/fzf
 
 - shell:
