@@ -14,4 +14,5 @@ git submodule update --init --recursive "${DOTBOT_DIR}"
 
 "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
 
+# This is executed outside of dotbot due to needing interactive session
 vim +PlugClean +PlugInstall +PlugUpdate +qall --not-a-term

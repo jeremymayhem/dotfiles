@@ -13,6 +13,13 @@
   aa = add --all
   update-submodules = submodule update --init --recursive
   upgrade-submodules = submodule update --init --remote
+  g = graph --style=10
+  ga = graph --all --style=10
+  lg = log -p --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+[pager]
+  graph = less -LFXRS
+  lg = less -LFXRS
 
 [init]
 #  templatedir = ~/.git_template
@@ -80,3 +87,5 @@
 
 [include]
   path = .gitconfig.local
+[help]
+	autocorrect = 20

@@ -13,3 +13,9 @@
 [submodule "external/bask"]
 	path = external/bask
 	url = https://github.com/jez/bask.git
+[submodule "external/bash-git-prompt"]
+	path = external/bash-git-prompt
+	url = https://github.com/magicmonty/bash-git-prompt.git
+[submodule "external/fzf"]
+	path = external/fzf
+	url = https://github.com/junegunn/fzf.git

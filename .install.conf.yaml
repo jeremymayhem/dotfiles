@@ -12,6 +12,9 @@
 
 - clean: ['~', '~/.config']
 
+- shell:
+  - [git submodule sync && git submodule update --init --recursive, Installing submodules]
+
 - link:
     ~/.dircolors:
     ~/.dotfiles: ''
@@ -23,6 +26,7 @@
     ~/.vimrc.bundles:
     ~/.vimrc:
     ~/.bask: external/bask
+    ~/.bash-git-prompt: external/bash-git-prompt
     ~/.bashrc.better:
     ~/bin/:
       path: bin/*
@@ -33,8 +37,8 @@
     ~/.bashrc.better.d/:
       path: bashrc.better.d/*
       glob: true
+    ~/.fzf: external/fzf
+
 - shell:
-  - git submodule sync --recursive
-  # the following have to run after linking ~/.gitconfig
-  - git update-submodules
-  - curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  - [ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim, Installing vim plugin manager ]
+  - [ ~/.fzf/install, Installing fzf ]
