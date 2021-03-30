@@ -8,3 +8,9 @@ export PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"   # mem/file s
 
 shopt -s cdspell     # Correct spelling of directories
 stty -ixon           # Disable terminal suspension
+
+# Enable super powers for fasd
+if command -v fasd &> /dev/null; then
+  eval "$(fasd --init auto)"
+  alias j='fasd_cd -d'
+fi
