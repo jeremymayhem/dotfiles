@@ -1,8 +1,20 @@
 #!/bin/env bash
+
+better::path_append() {
+  if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+    PATH="${PATH:+"$PATH:"}$1"
+  fi
+}
+
+better::path_append $HOME/bin
+better::path_append $HOME/.local/bin
+better::path_append $HOME/go/bin
+
 [[ -f $HOME/.bashrc.config ]] && . $HOME/.bashrc.config
 
+# Source all the scripts in .bashrc.better.d named *.bash
 # Only display stdout from better bash scripts when not a login shell
-for f in $HOME/.bashrc.better.d/*; do
+for f in $HOME/.bashrc.better.d/*.bash; do
   if [ -r "$f" ]; then
     if [ "$PS1" ]; then
       . "$f"

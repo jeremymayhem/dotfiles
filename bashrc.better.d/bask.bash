@@ -1,5 +1,5 @@
 #!/bin/env sh
 
 # Set up bask path
-PATH="$PATH:$HOME/.bask/bin"
+better::path_append $HOME/.bask/bin
 eval $(bask --completion=bash)
