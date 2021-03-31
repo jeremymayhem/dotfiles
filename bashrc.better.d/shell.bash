@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/env bash
 
 shopt -s histappend              # append new history items to .bash_history
 export HISTCONTROL=ignorespace   # leading space hides commands from history
@@ -14,3 +14,6 @@ if command -v fasd &> /dev/null; then
   eval "$(fasd --init auto)"
   alias j='fasd_cd -d'
 fi
+
+#Devbox tab completion
+source <(devbox completion)
