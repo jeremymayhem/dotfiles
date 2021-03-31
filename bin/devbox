@@ -1,5 +1,32 @@
 #!/bin/env bash
 
+if [[ $1 == "completion" ]]; then
+
+  cat <<- EOF
+
+__devbox_completions() {
+  local cur="\${COMP_WORDS[COMP_CWORD]}"
+  local prev="\${COMP_WORDS[COMP_CWORD-1]}"
+
+  local -a tasks=\$(bask -f ${BASH_SOURCE[0]} -l)
+  local -a words=()
+  for task in "\${tasks[@]}"; do
+    words+=("\${task}  ")
+  done
+
+  if [[ \${prev} == "playbook" ]]; then
+    words=("--tags=")
+  fi
+
+  COMPREPLY=(\$(compgen -W "\${words}" -- "\${cur}"))
+}
+complete -o nospace -F __devbox_completions devbox
+
+EOF
+
+  exit
+fi
+
 # Implemented using bask framework
 cd "$(dirname "$0")" || exit
 source $HOME/.bask/src/bask.sh
@@ -52,7 +79,11 @@ task_update_ansible_galaxy() {
 task_playbook() {
   [[ $1 == "-h" ]] && printf "Run local Ansible playbook.  Use --tags=x,y to only run tags" && return
   cd $ANSIBLE_DIR
-  ansible-playbook -K devbox.yml -i inventory ${@}
+  local PLAYBOOK_ARGS
+  if ! $(sudo -l | grep -q NOPASSWD); then
+    PLAYBOOK_ARGS="-K"
+  fi
+  ansible-playbook ${PLAYBOOK_ARGS} devbox.yml -i inventory ${@}
 }
 
 task_update_dotfiles() {
