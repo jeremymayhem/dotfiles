@@ -78,11 +78,19 @@ task_update_ansible_galaxy() {
 
 task_playbook() {
   [[ $1 == "-h" ]] && printf "Run local Ansible playbook.  Use --tags=x,y to only run tags" && return
-  cd $ANSIBLE_DIR
-  local PLAYBOOK_ARGS
-  if ! $(sudo -l | grep -q NOPASSWD); then
-    PLAYBOOK_ARGS="-K"
+
+  VAULT_PASSWORD_FILE=~/.vault-password
+  if [[ ! -f "${VAULT_PASSWORD_FILE}" ]]; then
+    echo "Error: Missing ansible vault password file: ${VAULT_PASSWORD_FILE}"
+    return 1
   fi
+
+  cd $ANSIBLE_DIR
+  local PLAYBOOK_ARGS="--vault-password-file ~/.vault-password"
+  if ! $(sudo -l | grep -q NOPASSWD); then
+    PLAYBOOK_ARGS="${PLAYBOOK_ARGS} -K"
+  fi
+
   ansible-playbook ${PLAYBOOK_ARGS} devbox.yml -i inventory ${@}
 }
 
