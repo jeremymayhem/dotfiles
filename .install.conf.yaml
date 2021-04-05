@@ -34,6 +34,8 @@
     ~/bin/icdiff: external/icdiff/icdiff
     ~/bin/git-icdiff: external/icdiff/git-icdiff
     ~/bin/fpp: external/PathPicker/fpp
+    ~/bin/kubectx: external/kubectx/kubectx
+    ~/bin/kubens: external/kubectx/kubens
     ~/.bashrc.better.d/:
       path: bashrc.better.d/*
       glob: true
