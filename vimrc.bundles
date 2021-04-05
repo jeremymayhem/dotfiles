@@ -21,6 +21,8 @@ Plug 'tpope/vim-eunuch'         " File management commands
 Plug 'tpope/vim-surround'
 Plug 'myusuf3/numbers.vim'      " Line numbers
 Plug 'farmergreg/vim-lastplace' " Start where you left off
+Plug 'christianrondeau/vim-base64' " Base64 conversions in place
+
 
 " Section: Git
 Plug 'tpope/vim-fugitive'       " Git functions
