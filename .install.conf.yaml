@@ -17,7 +17,9 @@
 
 - link:
     ~/.dircolors:
-    ~/.dotfiles: ''
+    ~/.dotfiles:
+      if: '[ ! -e ~/.dotfiles ]'
+      path: ''
     ~/.gitconfig:
     ~/.tigrc:
     ~/.tmux.conf:

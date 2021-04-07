@@ -54,7 +54,7 @@ bask_list_tasks() {
 
 task_update() {
   [[ $1 == "-h" ]] && printf "Update devbox configuration with the very latest ansible/dotfiles" && return
-  bask_depends latest refresh
+  bask_depends refresh_submodules latest refresh
 }
 
 task_refresh() {
@@ -103,7 +103,7 @@ task_update_dotfiles() {
 task_refresh_submodules() {
   [[ $1 == "-h" ]] && printf "Commit a new devbox project with the very latest ansible/dotfiles" && return
   cd $DEVBOX_DIR
-  git fetch
+  git pull
   git upgrade-submodules
   git add .
   git commit -m "Updating to latest submodules"

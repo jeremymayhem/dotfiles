@@ -49,7 +49,12 @@ Plug 'morhetz/gruvbox'          " colorscheme
 Plug 'rakr/vim-one'             " colorscheme
 
 " Section: Syntactic prettiness
-Plug 'sheerun/vim-polyglot'
+" Polyglot has a bug in v4.17.0 on vim < 8.0
+if g:has_async
+  Plug 'sheerun/vim-polyglot'
+else
+  Plug 'sheerun/vim-polyglot', { 'tag': 'v4.16.0' }
+endif
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'vim-scripts/indentpython.vim'
 
