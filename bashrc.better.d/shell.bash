@@ -10,10 +10,12 @@ shopt -s cdspell     # Correct spelling of directories
 stty -ixon           # Disable terminal suspension
 
 # Enable super powers for fasd
-if command -v fasd &> /dev/null; then
+if better::command_exists fasd; then
   eval "$(fasd --init auto)"
   alias j='fasd_cd -d'
 fi
 
-#Devbox tab completion
-source <(devbox completion)
+if better::command_exists devbox; then
+  #Devbox tab completion
+  source <(devbox completion)
+fi

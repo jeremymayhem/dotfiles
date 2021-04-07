@@ -6,6 +6,10 @@ better::path_append() {
   fi
 }
 
+better::command_exists() {
+  command -v $1 >/dev/null 2>&1
+}
+
 better::path_append $HOME/bin
 better::path_append $HOME/.local/bin
 better::path_append $HOME/go/bin

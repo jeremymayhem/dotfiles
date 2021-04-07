@@ -69,9 +69,9 @@ if filereadable(expand("~/.vimrc.bundles"))
   source ~/.vimrc.bundles
 endif
 
-set t_co=256
+set t_Co=256
 
-if (&t_co > 2 || has("gui_running")) && !exists("syntax_on")
+if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   syntax on
 endif
 

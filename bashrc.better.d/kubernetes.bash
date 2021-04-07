@@ -1,21 +1,29 @@
 #!/bin/env bash
 
-source <(kubectl completion bash)
-alias k=kubectl
-complete -F __start_kubectl k
+if better::command_exists kubectl; then
+  source <(kubectl completion bash)
+  alias k=kubectl
+  complete -F __start_kubectl k
 
-# Don't want colors?  Add this to .bashrc.config:
-# export KUBECOLOR_ARGS=--plain
-#
-# Have a white background?  Yuck.  Add this to .bashrc.config:
-# export KUBECOLOR_ARGS=--light-background
-command -v kubecolor >/dev/null 2>&1 && alias kubectl="kubecolor ${KUBECOLOR_ARGS}"
-command -v kubecolor >/dev/null 2>&1 && complete -F __start_kubectl kubecolor
+  # Don't want colors?  Add this to .bashrc.config:
+  # export KUBECOLOR_ARGS=--plain
+  #
+  # Have a white background?  Yuck.  Add this to .bashrc.config:
+  # export KUBECOLOR_ARGS=--light-background
+  if better::command_exists kubecolor; then
+    alias kubectl="kubecolor ${KUBECOLOR_ARGS}"
+    complete -F __start_kubectl kubecolor
+  fi
+fi
 
-source <(minikube completion bash)
-alias mk=minikube
-complete -F __start_minikube mk
+if better::command_exists minikube; then
+  source <(minikube completion bash)
+  alias mk=minikube
+  complete -F __start_minikube mk
+fi
 
-source <(helm completion bash)
-alias h=helm
-complete -F __start_helm h
+if better::command_exists helm; then
+  source <(helm completion bash)
+  alias h=helm
+  complete -F __start_helm h
+fi
