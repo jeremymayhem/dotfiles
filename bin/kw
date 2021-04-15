@@ -1,0 +1,6 @@
+#!/bin/bash
+if command -v kubecolor > /dev/null; then
+  watch -ctn 0.5 kubecolor "${@}" --force-colors
+elif command -v kubectl > /dev/null; then
+  watch -ctn 0.5 kubectl "${@}"
+fi
