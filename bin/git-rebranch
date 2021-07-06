@@ -1,0 +1,117 @@
+#!/bin/sh
+
+set -e
+
+function commandname() {
+  COMMANDNAME=$(basename $0)
+  COMMANDNAME=${COMMANDNAME/git-/}
+  echo $COMMANDNAME
+}
+
+function helpmessage() {
+  COMMANDNAME=$(commandname)
+  cat <<EOF
+usage: $COMMANDNAME [-m "Commit message"] <branch> <branch-base>
+
+Creates a new branch named <branch> based on the original branch contents.  The new branch will contain one commit branched off of the HEAD of <branch-base>, squashed to a single commit.
+
+This is a destructive process intended to clean up a long standing branch and prepare it for a squashed, fast-forward merge to the base branch.
+
+Before using this command, <branch> should be merged to <branch-base>.
+
+ex.  git $COMMANDNAME -m "My branch changes" mybranch main
+EOF
+}
+
+POSITIONAL=()
+while [[ $# -gt 0 ]]; do
+  key="$1"
+
+  case $key in
+    -h|--help)
+      helpmessage
+      exit 0
+    ;;
+    -m|--message)
+      MESSAGE="$2"
+      shift; shift
+      ;;
+    *)    # unknown option
+      POSITIONAL+=("$1")
+      shift
+      ;;
+  esac
+done
+
+set -- "${POSITIONAL[@]}" # restore positional parameters
+
+if [[ $# -lt 2 ]]; then
+  helpmessage
+  exit 1
+fi
+
+BRANCH=$1
+BASE=$2
+MESSAGE=${MESSAGE:-"Rebranching $BRANCH on $BASE"}
+
+echo "Rebranching $BRANCH on $BASE... ($MESSAGE)"
+
+function is_in_local() {
+    local branch=${1}
+    local existed_in_local=$(git branch --list ${branch})
+
+    if [[ -z ${existed_in_local} ]]; then
+        return 1
+    else
+        return 0
+    fi
+}
+
+function is_in_remote() {
+    if ! git remote get-url origin 2>/dev/null > /dev/null; then
+      return 1
+    fi
+    local branch=${1}
+    local existed_in_remote=$(git ls-remote --heads origin ${branch})
+
+    if [[ -z ${existed_in_remote} ]]; then
+        return 1
+    else
+        return 0
+    fi
+}
+
+function branch_exists() {
+  is_in_local $1 && return
+  is_in_remote $1 || return 1
+}
+
+if ! branch_exists $BRANCH; then
+  echo $BRANCH does not exist
+  exit 1
+fi
+
+if ! branch_exists $BASE; then
+  echo $BASE does not exist
+  exit 1
+fi
+
+git fetch
+
+git checkout $BASE 2>/dev/null
+is_in_remote $BASE && git pull
+
+git checkout $BRANCH 2>/dev/null
+is_in_remote $BRANCH && git pull
+
+if ! git merge --ff-only $BASE > /dev/null; then
+  echo $BASE is not fast-forward mergeable to $BRANCH.  Quitting...
+  exit 1
+fi
+
+git tag -f $BRANCH-original
+git checkout $BASE
+git branch -D $BRANCH
+git checkout -b $BRANCH
+git merge --squash --ff-only $BRANCH-original
+git commit -m "$MESSAGE"
